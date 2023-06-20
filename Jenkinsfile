@@ -1,8 +1,8 @@
-pipeline{
-options {
+pipeline {
+    options {
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
     }
-agent any
+    agent any
 
     tools {
         maven 'apache-maven-3.9.2'
@@ -11,18 +11,18 @@ agent any
     stages {
         stage('Code Compilation') {
             steps {
-                echo 'code compilation is starting'
+                echo 'Code compilation is starting'
                 sh 'mvn clean compile'
-				echo 'code compilation is completed'
+                echo 'Code compilation is completed'
             }
         }
 
         stage('Code Package') {
             steps {
-                echo 'code packing is starting'
+                echo 'Code packaging is starting'
                 sh 'mvn clean package'
-				echo 'code packing is completed'
+                echo 'Code packaging is completed'
             }
+        }
     }
-    }
-    }
+}
