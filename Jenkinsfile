@@ -5,7 +5,7 @@ options {
 agent any
 
     tools {
-        maven 'maven_3.8.7'
+        maven 'Apache Maven 3.9.2'
     }
 
     stages {
