@@ -4,10 +4,6 @@ pipeline {
     }
     agent any
 
-    tools {
-        Maven 'apache-maven-3.9.2'
-    }
-
     stages {
         stage('Code Compilation') {
             steps {
