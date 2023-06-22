@@ -38,7 +38,7 @@ pipeline {
                 stage(' Docker push to Docker Hub') {
                    steps {
                       script {
-                         withCredentials([string(credentialsId: '47682326-cca8-4478-b0ec-2b8d7cbbdf92', variable: 'dockerhubCred')]){
+                         withCredentials([string(credentialsId: '47682326-cca8-4478-b0ec-2b8d7cbbdf92', variable: 'Devopsadmin')]){
                          sh 'docker login docker.io -u pratikshakilledar -p'
                          echo "Push Docker Image to DockerHub : In Progress"
                          sh 'docker push satyam88/travelbooking-ms:latest'
