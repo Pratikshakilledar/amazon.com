@@ -38,12 +38,11 @@ pipeline {
                 stage(' Docker push to Docker Hub') {
                    steps {
                       script {
-                         withCredentials([string(credentialsId: 'docker', variable: 'docker')]){
-                         sh 'docker login -u pratikshakilledar -p docker'
-                         echo "Push Docker Image to DockerHub : In Progress"
-                         sh 'docker push pratikshakilledar/amazon.com:latest'
-                         echo "Push Docker Image to DockerHub : In Progress"
-                         sh 'whoami'
+                         withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
+                             sh 'docker login -u pratikshakilledar -p $docker'
+                             echo "Push Docker Image to DockerHub: In Progress"
+                             sh 'docker push pratikshakilledar/amazon.com:latest'
+                             echo "Push Docker Image to DockerHub: Completed"
                          }
                       }
                     }
