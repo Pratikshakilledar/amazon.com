@@ -39,7 +39,7 @@ pipeline {
                    steps {
                       script {
                          withCredentials([string(credentialsId: 'docker', variable: 'docker')]){
-                         sh 'docker login docker.io -u pratikshakilledar -p'
+                         sh 'docker login docker.io -u pratikshakilledar -p ${dockerHubCredentials.password}'
                          echo "Push Docker Image to DockerHub : In Progress"
                          sh 'docker push satyam88/travelbooking-ms:latest'
                          echo "Push Docker Image to DockerHub : In Progress"
