@@ -20,5 +20,33 @@ pipeline {
                 echo 'Code packaging is completed'
             }
         }
+        stage('Building & Tag Docker Image') {
+                    steps {
+                        echo 'Starting Building Docker Image'
+                        sh 'docker build -t pratikshakilledar/amazon.com .'
+                        sh 'docker build -t amazon.com-ms .'
+                        echo 'Completed  Building Docker Image'
+                    }
+                }
+                stage('Docker Image Scanning') {
+                    steps {
+                        echo 'Docker Image Scanning Started'
+                        sh 'java -version'
+                        echo 'Docker Image Scanning Started'
+                    }
+                }
+                stage(' Docker push to Docker Hub') {
+                   steps {
+                      script {
+                         withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]){
+                         sh 'docker login docker.io -u pratikshakilledar -p'
+                         echo "Push Docker Image to DockerHub : In Progress"
+                         sh 'docker push satyam88/travelbooking-ms:latest'
+                         echo "Push Docker Image to DockerHub : In Progress"
+                         sh 'whoami'
+                         }
+                      }
+                    }
+                }
     }
 }
