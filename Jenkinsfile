@@ -51,10 +51,10 @@ pipeline {
                            steps {
                               script {
                                  withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
-                                 sh 'docker login https://3.88.10.250:8081/repository/nexusrep/ -u admin -p $nexus'
+                                 sh 'docker login https://3.88.10.250:8085/repository/nexusrep/ -u admin -p $nexus'
                                  echo "Push Docker Image to Nexus : In Progress"
-                                 sh 'docker tag nexusrep 3.88.10.250:8081/repository/nexusrep:latest'
-                                 sh 'docker push 3.88.10.250:8081/nexusrep'
+                                 sh 'docker tag nexusrep 3.88.10.250:8085/repository/nexusrep:latest'
+                                 sh 'docker push 3.88.10.250:8085/nexusrep'
                                  echo "Push Docker Image to Nexus : Completed"
                                  }
                               }
