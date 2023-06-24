@@ -51,9 +51,9 @@ pipeline {
                            steps {
                               script {
                                  withCredentials([usernamePassword(credentialsId: 'nexus', variable: 'nexus')]){
-                                 echo "$nexus" | docker login http://3.88.10.250:8085/repository/nexusrep/ -u admin --password-stdin
+                                 sh 'docker login http://3.88.10.250:8085/repository/nexusrep-ms/ -u admin -p $nexus'
                                  echo "Push Docker Image to Nexus : In Progress"
-                                 sh 'docker tag travelbooking-ms http://3.88.10.250:8085/nexusrep-ms:latest'
+                                 sh 'docker tag nexusrep-ms http://3.88.10.250:8085/nexusrep-ms:latest'
                                  sh 'docker push 3.88.10.250:8085/nexusrep-ms'
                                  echo "Push Docker Image to Nexus : Completed"
                                  }
