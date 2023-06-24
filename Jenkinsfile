@@ -35,7 +35,7 @@ pipeline {
                         echo 'Docker Image Scanning Started'
                     }
                 }
-                stage(' Docker push to Docker Hub') {
+                stage('Docker push to Docker Hub') {
                    steps {
                       script {
                          withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
