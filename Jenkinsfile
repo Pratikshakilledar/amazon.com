@@ -47,5 +47,18 @@ pipeline {
                       }
                     }
                 }
+                stage('Upload the docker Image to Nexus') {
+                           steps {
+                              script {
+                                 withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]){
+                                 sh 'docker login http://3.88.10.250:8081/repository/nexusrep/ -u admin -p ${PASSWORD}'
+                                 echo "Push Docker Image to Nexus : In Progress"
+                                 sh 'docker tag travelbooking-ms http://3.88.10.250:8081/nexusrep-ms:latest'
+                                 sh 'docker push 3.88.10.250:8081/nexusrep-ms'
+                                 echo "Push Docker Image to Nexus : Completed"
+                                 }
+                              }
+                            }
+                        }
     }
 }
